@@ -1,13 +1,17 @@
 import Image from 'next/image'
+import { getCurrentCommit } from '../src/git'
 import styles from './page.module.css'
 
-export default function Home() {
+export default async function Home() {
+  const hash = await getCurrentCommit('https://github.com/vercel/next.js/')
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js 13!</a>
         </h1>
+
+        <p>Current commit hash: {hash}</p>
 
         <p className={styles.description}>
           Get started by editing{' '}
